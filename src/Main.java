@@ -1,16 +1,42 @@
+import java.util.Iterator;
+import java.util.Random;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+    static String[] studentType = {"Undergraduate", "Graduate", "PhD"};
+    static String[] firstNames = {"Ibragim", "Rakhman", "Dimash", "Rizuan", "Abzal", "Erkebulan", "Damir", "Diana", "Kuanysh", "Zhanibek"};
+    static String[] lastNames = {"Galymzhanuly", "Shora", "Itemgenov", "Shagdar", "Amirali", "Tuebayev", "Altaiuly", "Umbatkaliyeva", "Amangeldi", "Amanov"};
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+    public static void main(String[] args) {
+
+        Random random = new Random();
+
+        MyHashTable<StudentIdentifier, Student> m = new MyHashTable<>(1, 0.05);
+
+        for (int i = 0; i < 10220; i++) {
+            StudentIdentifier key = new StudentIdentifier(i, studentType[random.nextInt(studentType.length)]);
+
+            Student student = new Student(firstNames[random.nextInt(firstNames.length)], lastNames[random.nextInt(lastNames.length)]);
+
+            m.put(key, student);
+        }
+
+        m.search();
+
+        BST<Integer, Integer> bst = new BST<>();
+
+        bst.put(8, 1);
+        bst.put(3, 2);
+        bst.put(10, 3);
+        bst.put(1, 4);
+        bst.put(6, 5);
+        bst.put(14, 6);
+        bst.put(4, 7);
+        bst.put(7, 8);
+        bst.put(13, 9);
+        bst.delete(13);
+
+        for (var i : bst) {
+            System.out.println(i);
         }
     }
 }
